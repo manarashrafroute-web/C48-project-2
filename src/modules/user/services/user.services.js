@@ -413,3 +413,20 @@ export const AddProfileIamgeServices = async (req) => {
 
 
 }
+
+
+
+
+export const UpdatePasswordServices = async (req) => {
+
+    let { public_id, secure_url } = await cloudinary.uploader.upload(req.file.path, {
+        folder: `users/${req.user._id}/profileImage`,
+        resource_type: "image"
+    })
+
+    const data = await User.findOneAndUpdate({ _id: req.user.id }, { $set: { profileImage: { public_id, secure_url } } })
+
+    return data
+
+
+}

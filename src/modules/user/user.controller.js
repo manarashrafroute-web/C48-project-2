@@ -285,3 +285,16 @@ userController.post("/add-image", auth, multer_cloud({ allowedType: extinstions.
 
     return res.status(200).json({ message: " userSignUp successflly", user: data })
 })
+
+
+
+
+
+
+
+userController.post("/update-password", auth, multer_cloud({ allowedType: extinstions.image }).single("image"), async (req, res) => {
+
+    const data = await userServices.UpdatePasswordServices(req)
+
+    return res.status(200).json({ message: " userSignUp successflly", user: data })
+})
